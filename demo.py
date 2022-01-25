@@ -1,5 +1,6 @@
 import numpy as np
 from PIL import Image
+import matplotlib.pyplot as plt
 import time
 def conv2(img, conv_filter):
     filter_size = conv_filter.shape[1]
@@ -28,7 +29,7 @@ def fft_conv(img, conv_filter):
         img = np.pad(img, ((1, 0), (1, 0)), 'constant', constant_values=(0, 0))
         M += 1
         N += 1
-        flag = True                   
+        flag = True
     pad_value = int(M / 2) - int(m / 2)
     conv_filter = np.pad(conv_filter, ((pad_value, pad_value), (pad_value, pad_value)), 'constant',
                          constant_values=(0, 0))
@@ -44,7 +45,7 @@ def fft_conv(img, conv_filter):
         res = res[1:, 1:]
     return res
 if __name__ == '__main__':
-    img = Image.open('test.jpg')
+    img = Image.open('test.jpeg')
     img = img.resize((1023, 1023))
     img = img.convert('L')
     myfiler = np.array([[-1, 0, 1], [-2, 0, 2], [-1, 0, 1]])
